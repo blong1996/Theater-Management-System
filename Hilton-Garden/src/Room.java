@@ -1,3 +1,5 @@
+import java.util.Date;
+
 /**
  *
  *  @author Brandon Long, Aaren Avery
@@ -16,10 +18,12 @@
 public class Room {
 
     private boolean reserved;
-    private int roomNumber;
+    private int roomNumber, reservationNum;
     private String roomType, firstName, lastName;
     private boolean safe;
     private double total;
+    private Date checkIn, checkOut;
+    private int days;
     // need to add variables for the checkin and checkout dates
     /**
      *
@@ -32,7 +36,8 @@ public class Room {
      */
 
     public Room( boolean reserved, int roomNumber, String roomType,
-                 String firstName, String lastName, boolean safe, double total) {
+                 String firstName, String lastName, boolean safe, double total,
+                 Date checkIn, Date checkOut, int reservationNum, int days) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.reserved = reserved;
@@ -40,6 +45,10 @@ public class Room {
         this.roomNumber = roomNumber;
         this.safe = safe;
         this.total = total;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.reservationNum = reservationNum;
+        this.days = days;
 
     }
 
@@ -53,8 +62,18 @@ public class Room {
         return reserved;
     }
 
-    public void setReserved(boolean reserved) {
+
+    public void setRervation(boolean reserved, String firstName, boolean safe, String lastName, Date checkIn,
+                             Date checkOut, double total, int reservationNum, int days) {
         this.reserved = reserved;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.safe = safe;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.total = total;
+        this.reservationNum = reservationNum;
+        this.days = days;
     }
 
     public int getRoomNumber() {
@@ -96,6 +115,11 @@ public class Room {
     public void setSafe(boolean safe) {
         this.safe = safe;
     }
+    public String safeString() {
+        if (safe)
+            return "Yes";
+        return "No";
+    }
 
     public double getTotal() {
         return total;
@@ -105,6 +129,47 @@ public class Room {
         this.total = total;
     }
 
+    public int getReservationNum() {
+        return reservationNum;
+    }
 
+    public void setReservationNum(int reservationNum) {
+        this.reservationNum = reservationNum;
+    }
 
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public Date getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    @Override
+    public String toString() {
+        String reservation = "Reservation #: "+getReservationNum()+"\nReserved for: "+getLastName()+", "+getLastName()
+                +"\nRoom #: "+getRoomNumber()+"\nRoom Type: "+getRoomType()+"\n Safe Included :"+safeString()
+                +"\nReservation Total: "+getTotal()+"\nCheck In Date and Time: "+getCheckIn().toString()
+                +"\nCheck Out Date and Time: "+getCheckOut().toString();
+
+        System.out.println(reservation);
+
+        return reservation;
+    }
 }
