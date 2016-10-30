@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  *
  *  @author Brandon Long, Aaren Avery
@@ -51,7 +53,10 @@
 
 
 
-public class Main {
+public class Main extends JFrame {
+
+
+
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
