@@ -1,8 +1,4 @@
 import javax.swing.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
 
 /**
  *
@@ -59,11 +55,24 @@ import java.util.Scanner;
 
 public class Main extends JFrame {
 
+    public ReservationPanel reservationPanel;
 
+    public Main() {
+        reservationPanel = new ReservationPanel();
+        add(reservationPanel);
 
+    }
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Main frame = new Main();
+        frame.setTitle("Hilton Garden Inn at GSO Reservations | Copyright (c) 2016 Brandon " +
+                "Long & Aaren Avery | All rights reserved.");
+        frame.setSize(1000, 700);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setResizable(false);
 
     }
 }
+
