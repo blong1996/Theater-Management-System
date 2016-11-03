@@ -17,6 +17,7 @@ import java.util.Date;
 
 public class Room {
 
+    private double rate;
     private boolean reserved;
     private int roomNumber, reservationNum;
     private String roomType, firstName, lastName;
@@ -27,28 +28,20 @@ public class Room {
     // need to add variables for the checkin and checkout dates
     /**
      *
-     * @param reserved this boolean variable is true if the room has been reserved
      * @param roomNumber this is a 4 digit integer that represents the room number
-     * @param roomType this String value represents one of the three room types
-     * @param firstName String for the First Name on the reservation
-     * @param lastName String for the Last Name on the reservation
-     * @param safe true if the reservation includes a safe
      */
 
-    public Room( boolean reserved, int roomNumber, String roomType,
-                 String firstName, String lastName, boolean safe, double total,
-                 Date checkIn, Date checkOut, int reservationNum, int days) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.reserved = reserved;
-        this.roomType = roomType;
+    public Room(  int roomNumber) {
+        this.firstName = "";
+        this.lastName = "";
+        this.reserved = false;
         this.roomNumber = roomNumber;
-        this.safe = safe;
-        this.total = total;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.reservationNum = reservationNum;
-        this.days = days;
+        this.safe = false;
+        this.checkIn = null;
+        this.checkOut = null;
+        this.reservationNum = 0;
+        this.days = 0;
+        this.total = 0;
 
     }
 
@@ -159,6 +152,14 @@ public class Room {
 
     public void setDays(int days) {
         this.days = days;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
     }
 
     @Override

@@ -41,16 +41,19 @@ public class Hotel {
 
             // Add vacant rooms to hotel
         for (int x = 0; x < rooms; x++)  {
+                //  generate Junior Suite
             if (x % 5 == 0) {
-                hotel.add(new Room(false, 1000 + x, "Junior Suite", "", "", false, 180.00, null, null, 0, 0));
+                hotel.add(new JuniorSuite(1000 + x));
                 juniorRooms++;
             }
+                // generate Deluxe Room
             else if(x % 3 == 0) {
-                hotel.add(new Room(false, 1000 + x, "Deluxe", "", "", false, 140.00, null, null, 0, 0));
+                hotel.add(new Deluxe(1000 + x));
                 deluxeRooms++;
             }
+                // generate Standard Room
             else {
-                hotel.add(new Room(false, 1000 + x, "Standard", "", "", false, 120.00, null, null, 0, 0));
+                hotel.add(new Standard(1000 + x));
                 standardRooms++;
             }
 
@@ -71,13 +74,13 @@ public class Hotel {
     public int reserve( String firstName, String lastName, String roomType,
                         boolean safe, String checkIn, String checkOut) {
 
-        boolean roomFound = false; // boolean to see if room was found
         SimpleDateFormat myDateFormat = new SimpleDateFormat ("yyyy-MM-dd");
         System.out.println("User Check In String: "+ checkIn+"\nUser Check Out String: " +checkOut);
         Date checkInDate, checkOutDate;
 
             // Attempt to add reservation only if the inserted data is valid
         try {
+            boolean roomFound = false; // boolean to see if room was found
             checkInDate = myDateFormat.parse(checkIn);
             checkOutDate = myDateFormat.parse(checkOut);
 
@@ -102,46 +105,26 @@ public class Hotel {
 
                 // check to see if the room they desire is available. If so, reserve it
                 for (Room room : hotel) {
-                    if (room.getRoomType().equalsIgnoreCase(roomType)) {
-                        if (roomType.equalsIgnoreCase("Junior Suite")) {
-
-                            total += (180.00 * days);
-                            reservations++;
-                            juniorRooms--;
-                            room.setRervation(true, firstName, safe, lastName, checkInDate,
-                                    checkOutDate, total, reservations+10000, days);
-                            return days;
-
-                        } else if (roomType.equalsIgnoreCase("Deluxe")) {
-
-                            total += (140.00 * days);
-                            reservations++;
-                            deluxeRooms--;
-                            room.setRervation(true, firstName, safe, lastName, checkInDate,
-                                    checkOutDate, total, reservations+10000, days);
-                            return days;
-
-                        } else if (roomType.equalsIgnoreCase("Standard")) {
-
-                            total += (120.00 * days);
-                            reservations++;
-                            standardRooms--;
-                            room.setRervation(true, firstName, safe, lastName, checkInDate,
-                                    checkOutDate, total, reservations+10000, days);
-                            return days;
-
-                        } else {
-
-                            setRoomChoiceError("No room type selected.");
-                            return -1;
+                    if (room.getRoomType().equalsIgnoreCase(roomType) && !room.isReserved()) {
+                        total += (room.getRate() * days);
+                        reservations++;
+                        room.setRervation(true, firstName, safe, lastName, checkInDate,
+                                checkOutDate, total, reservations+10000, days);
+                        roomFound = true;
+                            // decrement number of rooms for specified type
+                        switch (roomType) {
+                            case "Junior Suite": juniorRooms--; break;
+                            case "Deluxe": deluxeRooms--; break;
+                            case "Standard": standardRooms--; break;
                         }
-
                     }
-
                 }
-                    // if room not found, inform user that hotel is out of this room type
-                if(!roomFound)
-                    setRoomChoiceError("Unfortunately, there are no more "+roomType+"'s available at this time.");
+                    // if room found, return days. else give memo to user
+                if(roomFound)
+                    return days;
+                else {
+                    setRoomChoiceError("Unfortunately, there are no more " + roomType + "'s available at this time.");
+                }
 
             }
 
@@ -190,7 +173,9 @@ public class Hotel {
 
     @Override
     public String toString() {
-        String hotelStatus = "Current Reservations: \n\n";
+        String hotelStatus = "Current Reservations: " + getReservations()+
+                ":\n\n";
+
 
         for (Room room : hotel) {
             if (room.isReserved())
