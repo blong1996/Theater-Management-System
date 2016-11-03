@@ -15,8 +15,6 @@
 
 public class Standard extends Room {
 
-    private static double NIGHTLY_RATE  = 120.00;
-
     /**
      * @param roomNumber this is a 4 digit integer that represents the room number
      */

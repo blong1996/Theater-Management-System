@@ -1,10 +1,6 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 /**
- *
  *  @author Brandon Long, Aaren Avery
- *  File: ReservationPanel.java
+ *  File: ReservationFrame.java
  *  Project: Hilton-Garden
  *  Date: Oct-Nov 2016
  *  Class: COMP260 Programming Languages, Dr. Yu
@@ -14,14 +10,16 @@ import java.awt.event.*;
  *
  *
  */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-
-public class ReservationPanel extends JPanel implements ActionListener {
+public class ReservationFrame extends JFrame implements ActionListener {
 
     public Hotel hotel;
     JButton make,view,status, close;
     JLabel title, copyright;
-    public ReservationPanel() {
+    public ReservationFrame() {
        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
         hotel = new Hotel(30); // Hotel with 30 rooms

@@ -128,8 +128,6 @@ public class Hotel {
 
             }
 
-
-
         }catch (ParseException e) {
             // Catch if there is an issue parsing the users inputted dates
 
@@ -137,8 +135,6 @@ public class Hotel {
             setRoomChoiceError("Invalid date was entered. \nAccepted Date format: YYYY-MM-DD");
 
         }
-
-
 
         return -1;
     }

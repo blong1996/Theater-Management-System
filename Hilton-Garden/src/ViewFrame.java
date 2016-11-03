@@ -1,17 +1,13 @@
-import javax.swing.*;
-
 /**
  * @author Brandon Long
- *         File: New.java
+ *         File: ViewFrame.java
  *         Project: Hilton-Garden
- *         Date: Oct
+ *         Date: Nov
  *         Class:
  *         Assignment:
  *         File Description:
  */
 
 
-public class New extends JOptionPane {
-
-
+public class ViewFrame {
 }

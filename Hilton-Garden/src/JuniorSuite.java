@@ -16,8 +16,6 @@
 
 public class JuniorSuite extends Room {
 
-
-
     /**
      * @param roomNumber this is a 4 digit integer that represents the room number
      */

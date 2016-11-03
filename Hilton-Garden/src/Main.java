@@ -53,18 +53,10 @@ import javax.swing.*;
 
 
 
-public class Main extends JFrame {
-
-    public ReservationPanel reservationPanel;
-
-    public Main() {
-        reservationPanel = new ReservationPanel();
-        add(reservationPanel);
-
-    }
+public class Main {
 
     public static void main(String[] args) {
-        Main frame = new Main();
+        ReservationFrame frame = new ReservationFrame();
         frame.setTitle("Hilton Garden Inn at GSO Reservations | Copyright (c) 2016 Brandon " +
                 "Long & Aaren Avery | All rights reserved.");
         frame.setSize(1000, 700);
