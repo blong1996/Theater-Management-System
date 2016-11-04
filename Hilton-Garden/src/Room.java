@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.text.*;
 
 /**
  *
@@ -164,10 +165,12 @@ public class Room {
 
     @Override
     public String toString() {
-        String reservation = "Reservation #: "+getReservationNum()+"\nReserved for: "+getLastName()+", "+getLastName()
-                +"\nRoom #: "+getRoomNumber()+"\nRoom Type: "+getRoomType()+"\n Safe Included :"+safeString()
-                +"\nReservation Total: "+getTotal()+"\nCheck In Date and Time: "+getCheckIn().toString()
-                +"\nCheck Out Date and Time: "+getCheckOut().toString();
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String reservation = "Reservation #: "+getReservationNum()+"\nReserved for: "+getLastName()+", "+getFirstName()
+                +"\nRoom #: "+getRoomNumber()+"\nRoom Type: "+getRoomType()+"\nNightly Rate: "+formatter.format(getRate())+
+                "\nSafe Included : "+safeString() +"\nReservation Total: "+formatter.format(getTotal())+
+                "\nCheck In Date and Time: "+getCheckIn().toString() +"\nCheck Out Date and Time: "+
+                getCheckOut().toString()+"\nNumber of days: "+getDays();
 
         System.out.println(reservation);
 

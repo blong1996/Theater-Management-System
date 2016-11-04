@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -54,16 +55,14 @@ import javax.swing.*;
 
 
 public class Main {
-
     public static void main(String[] args) {
         ReservationFrame frame = new ReservationFrame();
         frame.setTitle("Hilton Garden Inn at GSO Reservations | Copyright (c) 2016 Brandon " +
                 "Long & Aaren Avery | All rights reserved.");
-        frame.setSize(1000, 700);
+        frame.setSize(800, 300);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setResizable(false);
 
     }
 }

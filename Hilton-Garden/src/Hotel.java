@@ -24,7 +24,7 @@ public class Hotel {
     private int reservations;
 
 
-    private String roomChoiceError;
+    private String roomChoiceAlert;
     private ArrayList<Room> hotel = new ArrayList<Room>();
 
     /**
@@ -74,8 +74,11 @@ public class Hotel {
     public int reserve( String firstName, String lastName, String roomType,
                         boolean safe, String checkIn, String checkOut) {
 
+        System.out.println("User Input: \n\n First Name: "+firstName+" Last Name: "+lastName+
+                            "\nRoom Type: "+roomType+"\nSafe: "+ safe+"\nCheck In: "+checkIn+
+                            "\nCheck Out: "+checkOut);
+
         SimpleDateFormat myDateFormat = new SimpleDateFormat ("yyyy-MM-dd");
-        System.out.println("User Check In String: "+ checkIn+"\nUser Check Out String: " +checkOut);
         Date checkInDate, checkOutDate;
 
             // Attempt to add reservation only if the inserted data is valid
@@ -84,13 +87,15 @@ public class Hotel {
             checkInDate = myDateFormat.parse(checkIn);
             checkOutDate = myDateFormat.parse(checkOut);
 
-            System.out.println("Parsed Check In Date: "+ checkInDate+"\nParsed Check Out Date: " +checkOutDate);
+            System.out.println("\nParsed Check In Date: "+ checkInDate+"\nParsed Check Out Date: " +checkOutDate);
 
             int days = (int)( (checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
-            System.out.println("Days of reservation: "+days);
+            int roomNumber = 0;
+            String roomDetails = "";
+            System.out.println("\nDays of reservation: "+days);
 
             if (days <= 0)
-                setRoomChoiceError("Check out date must be after check in date.");
+                setRoomChoiceAlert("Check out date must be after check in date.");
             else {
 
                 // Set Check In time to 3:00PM and Check Out time to 12:00PM
@@ -111,19 +116,23 @@ public class Hotel {
                         room.setRervation(true, firstName, safe, lastName, checkInDate,
                                 checkOutDate, total, reservations+10000, days);
                         roomFound = true;
+                        roomNumber = room.getRoomNumber();
+                        roomDetails = room.toString();
                             // decrement number of rooms for specified type
                         switch (roomType) {
                             case "Junior Suite": juniorRooms--; break;
                             case "Deluxe": deluxeRooms--; break;
                             case "Standard": standardRooms--; break;
                         }
+                        break;
                     }
                 }
                     // if room found, return days. else give memo to user
-                if(roomFound)
-                    return days;
-                else {
-                    setRoomChoiceError("Unfortunately, there are no more " + roomType + "'s available at this time.");
+                if(roomFound) {
+                    setRoomChoiceAlert("Your reservation has been booked! \n\n"+roomDetails);
+                    return roomNumber;
+                } else {
+                    setRoomChoiceAlert("Unfortunately, there are no more " + roomType + "'s available at this time.");
                 }
 
             }
@@ -132,19 +141,38 @@ public class Hotel {
             // Catch if there is an issue parsing the users inputted dates
 
             System.out.println("User date input was unable to be parsed");
-            setRoomChoiceError("Invalid date was entered. \nAccepted Date format: YYYY-MM-DD");
+            setRoomChoiceAlert("Invalid date was entered. \nAccepted Date format: YYYY-MM-DD");
 
         }
 
         return -1;
     }
 
-    public String getRoomChoiceError() {
-        return roomChoiceError;
+    public String findReservation(String firstName, String lastName, int resNum) {
+
+        String resDetails = "";
+
+            for (Room room : hotel) {
+                if ((room.getFirstName().equalsIgnoreCase(firstName) &&
+                        room.getLastName().equalsIgnoreCase(lastName))||room.getReservationNum() == resNum) {
+                        resDetails = room.toString();
+                    break;
+                }
+                else
+                    resDetails = "There were no matching reservations found.";
+
+            }
+
+        return resDetails;
+
     }
 
-    public void setRoomChoiceError(String roomChoiceError) {
-        this.roomChoiceError = roomChoiceError;
+    public String getRoomChoiceAlert() {
+        return roomChoiceAlert;
+    }
+
+    public void setRoomChoiceAlert(String roomChoiceAlert) {
+        this.roomChoiceAlert = roomChoiceAlert;
     }
 
     public int getTotalRooms() {
@@ -175,7 +203,7 @@ public class Hotel {
 
         for (Room room : hotel) {
             if (room.isReserved())
-                hotelStatus+= room.toString()+"\n";
+                hotelStatus+= room.toString()+"\n\n";
         }
 
         hotelStatus+= "\nAvailable Rooms: \n"+

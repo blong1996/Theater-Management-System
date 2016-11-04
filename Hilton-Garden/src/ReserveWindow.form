@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ReserveWindow">
+  <grid id="27dc6" binding="titlePanel" layout-manager="FormLayout">
+    <rowspec value="center:41px:grow"/>
+    <rowspec value="top:6dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:3dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <colspec value="center:164px:grow"/>
+    <colspec value="left:4dlu:noGrow"/>
+    <colspec value="fill:d:grow"/>
+    <constraints>
+      <xy x="20" y="7" width="622" height="272"/>
+    </constraints>
+    <properties>
+      <background color="-12514540"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="a4400" class="javax.swing.JLabel" binding="title">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="121" height="117"/>
+          </grid>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+        <properties>
+          <background color="-12517372"/>
+          <font size="26" style="1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Make a Reservation"/>
+        </properties>
+      </component>
+      <grid id="ef77c" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints>
+          <grid row="14" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <background color="-12514540"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="ead1c" class="javax.swing.JButton" binding="reserveButton">
+            <constraints/>
+            <properties>
+              <background color="-12514540"/>
+              <text value="Reserve"/>
+            </properties>
+          </component>
+          <component id="f4c53" class="javax.swing.JButton" binding="cancelButton">
+            <constraints/>
+            <properties>
+              <background color="-12514540"/>
+              <text value="Cancel"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="d5c1a" class="javax.swing.JLabel" binding="fNameLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="First Name:"/>
+        </properties>
+      </component>
+      <component id="a637" class="javax.swing.JTextField" binding="fNameField">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <forms top="0" left="0" bottom="0" right="10" defaultalign-horz="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="8826" class="javax.swing.JLabel" binding="lNameLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Last Name:"/>
+        </properties>
+      </component>
+      <component id="6c6d2" class="javax.swing.JTextField" binding="lNameField">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <forms top="0" left="0" bottom="0" right="10" defaultalign-horz="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="54cc5" class="javax.swing.JLabel" binding="safeLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Will you require a safe? ($20.00):"/>
+        </properties>
+      </component>
+      <grid id="c8f9e" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="c1e3f" class="javax.swing.JRadioButton" binding="safeYes">
+            <constraints border-constraint="West"/>
+            <properties>
+              <background color="-12514540"/>
+              <selected value="false"/>
+              <text value="Yes"/>
+            </properties>
+          </component>
+          <component id="67b50" class="javax.swing.JRadioButton" binding="safeNo">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <background color="-12514540"/>
+              <selected value="true"/>
+              <text value="No"/>
+            </properties>
+          </component>
+          <grid id="dddbf" layout-manager="FormLayout">
+            <rowspec value="center:d:grow"/>
+            <colspec value="fill:d:grow"/>
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <component id="78dd0" class="javax.swing.JLabel" binding="checkInLabel">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Check In Date (YYYY-MM-DD):"/>
+        </properties>
+      </component>
+      <component id="ad3f3" class="javax.swing.JTextField" binding="checkInField">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <forms top="0" left="0" bottom="0" right="10" defaultalign-horz="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="a0552" class="javax.swing.JLabel" binding="checkOutLabel">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Check Out Date (YYYY-MM-DD):"/>
+        </properties>
+      </component>
+      <component id="5a038" class="javax.swing.JTextField" binding="checkOutField">
+        <constraints>
+          <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <forms top="0" left="0" bottom="0" right="10" defaultalign-horz="false"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="19c0a" class="javax.swing.JComboBox" binding="roomTypeCombo">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <forms top="0" left="0" bottom="0" right="10"/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <model>
+            <item value="Standard Room - $120/night"/>
+            <item value="Deluxe Room - $140/night"/>
+            <item value="Junior Suite - $180/night"/>
+          </model>
+        </properties>
+      </component>
+      <component id="2f6f6" class="javax.swing.JLabel" binding="roomTypeLabel">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <font style="1"/>
+          <text value="Room Type:"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
