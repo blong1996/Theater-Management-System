@@ -151,18 +151,21 @@ public class Hotel {
     public String findReservation(String firstName, String lastName, int resNum) {
 
         String resDetails = "";
-
+        try {
             for (Room room : hotel) {
                 if ((room.getFirstName().equalsIgnoreCase(firstName) &&
-                        room.getLastName().equalsIgnoreCase(lastName))||room.getReservationNum() == resNum) {
-                        resDetails = room.toString();
+                        room.getLastName().equalsIgnoreCase(lastName)) || room.getReservationNum() == resNum) {
+                    resDetails = room.toString();
                     break;
                 }
                 else
                     resDetails = "There were no matching reservations found.";
 
             }
-
+        }
+            catch (NullPointerException x){
+                resDetails = "There were no matching reservations found.";
+            }
         return resDetails;
 
     }
@@ -210,7 +213,7 @@ public class Hotel {
                 "\nStandard: "+getStandardRooms()+
                 "\nDeluxe: "+getDeluxeRooms()+
                 "\nJunior Suite: "+getJuniorRooms()+
-                "\n Total: "+getTotalRooms();
+                "\nTotal: "+getTotalRooms();
 
         return hotelStatus;
     }

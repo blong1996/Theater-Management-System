@@ -26,7 +26,7 @@ public class Room {
     private double total;
     private Date checkIn, checkOut;
     private int days;
-    // need to add variables for the checkin and checkout dates
+
     /**
      *
      * @param roomNumber this is a 4 digit integer that represents the room number
@@ -40,7 +40,7 @@ public class Room {
         this.safe = false;
         this.checkIn = null;
         this.checkOut = null;
-        this.reservationNum = 0;
+        this.reservationNum = -1;
         this.days = 0;
         this.total = 0;
 

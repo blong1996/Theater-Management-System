@@ -36,13 +36,16 @@ class ReserveFrame extends JFrame  implements ActionListener {
         this.hotel = hotel;
         this.reservationFrame = reservationFrame;
         Container console = getContentPane();
-        setLayout(new BoxLayout(console, BoxLayout.Y_AXIS));
+        console.setLayout(new BoxLayout(console, BoxLayout.Y_AXIS));
+
         JPanel form = new JPanel();
         form.setLayout(new GridLayout(0, 2, 5, 5));
-
+        form.setBackground(new Color(65, 11, 20));
         buttons = new JPanel();
         buttons.setLayout(new GridLayout(0, 2, 5, 5));
         buttons2 = new JPanel();
+        buttons.setBackground(new Color(65, 11, 20));
+        buttons2.setBackground(new Color(65, 11, 20));
         buttons2.setLayout(new GridLayout(0, 2, 5, 5));
         fNameLabel = new JLabel("First Name:", SwingConstants.RIGHT);
         lNameLabel = new JLabel("Last Name:", SwingConstants.RIGHT);
@@ -53,6 +56,7 @@ class ReserveFrame extends JFrame  implements ActionListener {
                 "YYYY-MM-DD):", SwingConstants.RIGHT);
         checkOutLabel = new JLabel("Check Out Date (Required Format - " +
                 "YYYY-MM-DD):", SwingConstants.RIGHT);
+
         submit = new JButton("Reserve");
         cancel = new JButton("Cancel");
         fNameField = new JTextField("");
@@ -63,10 +67,18 @@ class ReserveFrame extends JFrame  implements ActionListener {
         checkInField.setSize(50,20);
         checkOutField = new JTextField("");
         checkOutField.setSize(50,20);
-        safeGroup = new ButtonGroup();
+        fNameLabel.setForeground(Color.WHITE);
+        lNameLabel.setForeground(Color.WHITE);
+        roomTypeLabel.setForeground(Color.WHITE);
+        safeLabel.setForeground(Color.WHITE);
+        checkInLabel.setForeground(Color.WHITE);
+        checkOutLabel.setForeground(Color.WHITE);
 
+        safeGroup = new ButtonGroup();
         safeYes = new JRadioButton("Yes");
         safeNo = new JRadioButton("No");
+        safeYes.setForeground(Color.WHITE);
+        safeNo.setForeground(Color.WHITE);
         buttons.add(safeYes);
         buttons.add(safeNo);
 
@@ -114,15 +126,48 @@ class ReserveFrame extends JFrame  implements ActionListener {
 
             roomType = roomType.substring(0, roomType.length()-13);
             int roomNumber = hotel.reserve(firstName, lastName, roomType, safe, checkIn, checkOut);
-            JOptionPane.showMessageDialog(null, hotel.getRoomChoiceAlert());
+           // JOptionPane.showMessageDialog(null, hotel.getRoomChoiceAlert());
+
+
+            int n;
 
             if (roomNumber != -1) {
+                Object[] options = {"Make a new reservation",
+                    "Close"};
+                n = JOptionPane.showOptionDialog(null,
+                        hotel.getRoomChoiceAlert(),
+                        "Reservation Status",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null, options, options[0]);
+            } else {
+                Object[] options = {"Try Again",
+                        "Cancel"};
+                n = JOptionPane.showOptionDialog(null,
+                        hotel.getRoomChoiceAlert(),
+                        "Reservation Error",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null, options, options[0]);
+            }
+
+            if (n == 1) {
                 reservationFrame.setHotel(getHotel());
+                reservationFrame.enableButtons();
                 this.dispose();
+            } else if (n == 0 && roomNumber !=-1) {
+                fNameField.setText("");
+                lNameField.setText("");
+                roomTypeOption.setSelectedIndex(0);
+                checkInField.setText("");
+                checkOutField.setText("");
+                safeNo.setSelected(true);
+
             }
         }
         else if (e.getSource() == cancel) {
             reservationFrame.setHotel(getHotel());
+            reservationFrame.enableButtons();
             this.dispose();
         }
     }
