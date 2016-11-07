@@ -13,12 +13,12 @@
  */
 
 
-public class Standard extends Room {
+class Standard extends Room {
 
     /**
      * @param roomNumber this is a 4 digit integer that represents the room number
      */
-    public Standard(int roomNumber) {
+    Standard(int roomNumber) {
         super(roomNumber);
         setRoomType("Standard");
         setRate(120.00);

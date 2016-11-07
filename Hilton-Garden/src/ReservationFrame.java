@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 /**
  *  @author Brandon Long, Aaren Avery
  *  File: ReservationFrame.java
@@ -7,12 +11,10 @@
  *  Assignment: Project 2
  *  File Description:
  *
- *
+ *  This JFrame is the main User Interface. The other frames
+ *  are created once their respective button is clicked.
  *
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
  class ReservationFrame extends JFrame implements ActionListener {
 
@@ -45,14 +47,23 @@ import java.awt.event.*;
         add(make);
         add(view);
         add(status);
+         add(close);
         add(copyright);
 
          // add actionListeners to buttons
         make.addActionListener(this);
         view.addActionListener(this);
         status.addActionListener(this);
+         close.addActionListener(this);
 
     }
+
+    /**
+     *
+     *  This method adds the actions for each of the buttons
+     *
+     * @param e ActionEvent opject
+     */
 
     public void actionPerformed(ActionEvent e) {
 
@@ -86,14 +97,27 @@ import java.awt.event.*;
             JScrollPane scrollPane = new JScrollPane(textArea);
             textArea.setLineWrap(true);
             textArea.setWrapStyleWord(true);
-            scrollPane.setPreferredSize( new Dimension( 350, 500 ) );
-            JOptionPane.showMessageDialog(null, scrollPane);
+            scrollPane.setPreferredSize( new Dimension( 375, 500 ) );
+            JOptionPane.showMessageDialog(null, scrollPane, "Hotel Status", 1);
 
 
             // terminate program
         } else if (e.getSource() == close) {
 
 
+            Object[] options = {"Yes",
+                    "No"};
+            int n = JOptionPane.showOptionDialog(null,
+                    "Are you sure you want to close this application? \n" +
+                            "All hotel data will be lost.",
+                    "Close Application",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, options, options[0]);
+
+
+            if (n != 1)
+                System.exit(0);
         }
 
     }
@@ -103,20 +127,20 @@ import java.awt.event.*;
       *  Getter & Setter for the Hotel object
       *
       */
-     public Hotel getHotel() {
+     private Hotel getHotel() {
          return hotel;
      }
 
-     public void setHotel(Hotel hotel) {
+     void setHotel(Hotel hotel) {
          this.hotel = hotel;
      }
 
-     public void disableButtons() {
+     private void disableButtons() {
          make.setEnabled(false);
          view.setEnabled(false);
          status.setEnabled(false);
      }
-     public void enableButtons() {
+     void enableButtons() {
          make.setEnabled(true);
          view.setEnabled(true);
          status.setEnabled(true);

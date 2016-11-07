@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  *
  *  @author Brandon Long, Aaren Avery
- *  File: ReservveFrame.java
+ *  File: ReserveFrame.java
  *  Project: Hilton-Garden
  *  Date: Oct-Nov 2016
  *  Class: COMP260 Programming Languages, Dr. Yu
@@ -19,16 +19,12 @@ import java.awt.event.ActionListener;
 
 
 class ReserveFrame extends JFrame  implements ActionListener {
-    public Hotel hotel;
-    public ReservationFrame reservationFrame;
-    JPanel form, buttons, buttons2;
-    JLabel fNameLabel, lNameLabel, roomTypeLabel, safeLabel, checkInLabel, checkOutLabel;
-    JTextField fNameField, lNameField, checkInField, checkOutField;
-    JButton submit, cancel;
-    JRadioButton safeYes, safeNo;
-    JComboBox<String> roomTypeOption;
-    ButtonGroup  safeGroup;
-
+    private Hotel hotel;
+    private ReservationFrame reservationFrame;
+    private JTextField fNameField, lNameField, checkInField, checkOutField;
+    private JButton submit, cancel;
+    private JRadioButton safeYes, safeNo;
+    private JComboBox<String> roomTypeOption;
 
 
     ReserveFrame (Hotel hotel, ReservationFrame reservationFrame) {
@@ -41,20 +37,20 @@ class ReserveFrame extends JFrame  implements ActionListener {
         JPanel form = new JPanel();
         form.setLayout(new GridLayout(0, 2, 5, 5));
         form.setBackground(new Color(65, 11, 20));
-        buttons = new JPanel();
+        JPanel buttons = new JPanel();
         buttons.setLayout(new GridLayout(0, 2, 5, 5));
-        buttons2 = new JPanel();
+        JPanel buttons2 = new JPanel();
         buttons.setBackground(new Color(65, 11, 20));
         buttons2.setBackground(new Color(65, 11, 20));
         buttons2.setLayout(new GridLayout(0, 2, 5, 5));
-        fNameLabel = new JLabel("First Name:", SwingConstants.RIGHT);
-        lNameLabel = new JLabel("Last Name:", SwingConstants.RIGHT);
-        roomTypeLabel = new JLabel("Room Type:", SwingConstants.RIGHT);
-        safeLabel = new JLabel("Would you like to include a Safe?:",
+        JLabel fNameLabel = new JLabel("First Name:", SwingConstants.RIGHT);
+        JLabel lNameLabel = new JLabel("Last Name:", SwingConstants.RIGHT);
+        JLabel roomTypeLabel = new JLabel("Room Type:", SwingConstants.RIGHT);
+        JLabel safeLabel = new JLabel("Would you like to include a Safe?:",
                 SwingConstants.RIGHT);
-        checkInLabel = new JLabel("Check In Date (Required Format - " +
+        JLabel checkInLabel = new JLabel("Check In Date (Required Format - " +
                 "YYYY-MM-DD):", SwingConstants.RIGHT);
-        checkOutLabel = new JLabel("Check Out Date (Required Format - " +
+        JLabel checkOutLabel = new JLabel("Check Out Date (Required Format - " +
                 "YYYY-MM-DD):", SwingConstants.RIGHT);
 
         submit = new JButton("Reserve");
@@ -74,7 +70,7 @@ class ReserveFrame extends JFrame  implements ActionListener {
         checkInLabel.setForeground(Color.WHITE);
         checkOutLabel.setForeground(Color.WHITE);
 
-        safeGroup = new ButtonGroup();
+        ButtonGroup safeGroup = new ButtonGroup();
         safeYes = new JRadioButton("Yes");
         safeNo = new JRadioButton("No");
         safeYes.setForeground(Color.WHITE);
@@ -88,7 +84,7 @@ class ReserveFrame extends JFrame  implements ActionListener {
         safeNo.setSelected(true);
         safeGroup.add(safeYes);
         safeGroup.add(safeNo);
-
+            // add components to JFrame
         form.add(fNameLabel);
         form.add(fNameField);
         form.add(lNameLabel);
@@ -103,15 +99,24 @@ class ReserveFrame extends JFrame  implements ActionListener {
         form.add(checkOutField);
         buttons2.add(submit);
         buttons2.add(cancel);
-
         add(form);
         add(buttons2);
 
+            // Add action listeners to buttons
         submit.addActionListener(this);
         cancel.addActionListener(this);
 
 
     }
+
+
+    /**
+     *
+     *  This method adds the actions for each of the buttons
+     *
+     * @param e ActionEvent opject
+     */
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -130,7 +135,8 @@ class ReserveFrame extends JFrame  implements ActionListener {
 
 
             int n;
-
+                // allow user to input a new reservation or to attempt to enter
+                // a reservation again if there was an error.
             if (roomNumber != -1) {
                 Object[] options = {"Make a new reservation",
                     "Close"};
@@ -172,11 +178,16 @@ class ReserveFrame extends JFrame  implements ActionListener {
         }
     }
 
-    public Hotel getHotel() {
+    /**
+     *
+     * Getter and Setter for hotel
+     *
+     */
+    private Hotel getHotel() {
         return hotel;
     }
 
-    public void setHotel(Hotel hotel) {
+    private void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
 

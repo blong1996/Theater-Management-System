@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 /**
  *
@@ -48,11 +47,7 @@ import java.awt.*;
  *  d)  Email your program to Robert Dawkins Redawkin@aggies.ncat.edu.
  *
  *
- *
- *
  */
-
-
 
 public class Main {
     public static void main(String[] args) {

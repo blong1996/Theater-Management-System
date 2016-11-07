@@ -19,16 +19,15 @@ import java.awt.event.ActionListener;
  */
 
 
-public class ViewFrame extends JFrame implements ActionListener {
+class ViewFrame extends JFrame implements ActionListener {
     
-    Hotel hotel;
-    JTextField fNameField,lNameField, resNumField;
-    JButton search, cancel;
-    JTextArea detailsArea;
-    JPanel prompt;
-    ReservationFrame reservationFrame;
+    private Hotel hotel;
+    private JTextField fNameField,lNameField, resNumField;
+    private JButton search, cancel;
+    private JTextArea detailsArea;
+    private ReservationFrame reservationFrame;
 
-    public ViewFrame(Hotel hotel , ReservationFrame reservationFrame) {
+    ViewFrame(Hotel hotel, ReservationFrame reservationFrame) {
         super("View Reservation");
         this.hotel = hotel;
         this.reservationFrame = reservationFrame;
@@ -40,7 +39,7 @@ public class ViewFrame extends JFrame implements ActionListener {
         JPanel form = new JPanel();
         form.setLayout(new GridLayout(0, 2, 5, 5));
         form.setBackground(new Color(65, 11, 20));
-        prompt = new JPanel();
+        JPanel prompt = new JPanel();
         prompt.setLayout(new GridLayout(0,1,5,5));
         prompt.setBackground(new Color(65, 11, 20));
         buttons.setBackground(new Color(65, 11, 20));
@@ -70,7 +69,8 @@ public class ViewFrame extends JFrame implements ActionListener {
 
         form.setPreferredSize(new Dimension(800, 120));
         buttons.setPreferredSize(new Dimension(800,75));
-        
+
+            // add components to JFrame
         form.add(fNameLabel);
         form.add(fNameField);
         form.add(lNameLabel);
@@ -82,6 +82,7 @@ public class ViewFrame extends JFrame implements ActionListener {
         add(buttons);
         add(detailsArea);
 
+            // add action listeners to buttons
         search.addActionListener(this);
         cancel.addActionListener(this);
         

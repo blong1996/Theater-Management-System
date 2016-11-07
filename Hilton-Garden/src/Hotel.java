@@ -18,7 +18,7 @@ import java.text.*;
  */
 
 
-public class Hotel {
+class Hotel {
 
     private int totalRooms, juniorRooms, deluxeRooms, standardRooms;
     private int reservations;
@@ -32,7 +32,7 @@ public class Hotel {
      * @param rooms number of rooms in hotel
      */
 
-    public Hotel(int rooms){
+    Hotel(int rooms){
         this.totalRooms = rooms;
         juniorRooms = 0;
         deluxeRooms = 0;
@@ -63,6 +63,8 @@ public class Hotel {
 
     /**
      *
+     * This method is used to reserve a new hotel room
+     *
      * @param firstName String for the First Name on the reservation
      * @param lastName String for the Last Name on the reservation
      * @param roomType this String value represents one of the three room types
@@ -71,8 +73,8 @@ public class Hotel {
      *          error occurs, return -1
      */
 
-    public int reserve( String firstName, String lastName, String roomType,
-                        boolean safe, String checkIn, String checkOut) {
+    int reserve(String firstName, String lastName, String roomType,
+                boolean safe, String checkIn, String checkOut) {
 
         System.out.println("User Input: \n\n First Name: "+firstName+" Last Name: "+lastName+
                             "\nRoom Type: "+roomType+"\nSafe: "+ safe+"\nCheck In: "+checkIn+
@@ -120,9 +122,9 @@ public class Hotel {
                         roomDetails = room.toString();
                             // decrement number of rooms for specified type
                         switch (roomType) {
-                            case "Junior Suite": juniorRooms--; break;
-                            case "Deluxe": deluxeRooms--; break;
-                            case "Standard": standardRooms--; break;
+                            case "Junior Suite": juniorRooms--; totalRooms--; break;
+                            case "Deluxe": deluxeRooms--; totalRooms--; break;
+                            case "Standard": standardRooms--; totalRooms--; break;
                         }
                         break;
                     }
@@ -148,13 +150,30 @@ public class Hotel {
         return -1;
     }
 
-    public String findReservation(String firstName, String lastName, int resNum) {
+    /**
+     *
+     * This message returns a queried hotel reservation
+     *
+     * @param firstName first name on hotel room
+     * @param lastName last name on hotel room
+     * @param resNum reservation number
+     * @return resDetails details for the reservation being searched
+     *
+     */
+
+    String findReservation(String firstName, String lastName, int resNum) {
+
+        if (firstName == null)
+            firstName = " ";
+        else if (lastName == null)
+            lastName = " ";
 
         String resDetails = "";
         try {
             for (Room room : hotel) {
-                if ((room.getFirstName().equalsIgnoreCase(firstName) &&
-                        room.getLastName().equalsIgnoreCase(lastName)) || room.getReservationNum() == resNum) {
+                if (room.isReserved() && (room.getReservationNum() == resNum ||
+                        (room.getFirstName().equalsIgnoreCase(firstName) &&
+                        room.getLastName().equalsIgnoreCase(lastName)) )) {
                     resDetails = room.toString();
                     break;
                 }
@@ -170,34 +189,44 @@ public class Hotel {
 
     }
 
-    public String getRoomChoiceAlert() {
+
+    /**
+     *
+     * Getters & Setters for current number of rooms and the alert message
+     *
+     */
+    String getRoomChoiceAlert() {
         return roomChoiceAlert;
     }
 
-    public void setRoomChoiceAlert(String roomChoiceAlert) {
+    private void setRoomChoiceAlert(String roomChoiceAlert) {
         this.roomChoiceAlert = roomChoiceAlert;
     }
 
-    public int getTotalRooms() {
+    private int getTotalRooms() {
         return totalRooms;
     }
 
-    public int getJuniorRooms() {
+    private int getJuniorRooms() {
         return juniorRooms;
     }
 
-    public int getDeluxeRooms() {
+    private int getDeluxeRooms() {
         return deluxeRooms;
     }
 
-    public int getStandardRooms() {
+    private int getStandardRooms() {
         return standardRooms;
     }
 
-    public int getReservations() {
+    private int getReservations() {
         return reservations;
     }
 
+    /**
+     *
+     * @return hotelStatus String representation of the current state of the hotel.
+     */
     @Override
     public String toString() {
         String hotelStatus = "Current Reservations: " + getReservations()+

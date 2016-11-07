@@ -16,7 +16,7 @@ import java.text.*;
  */
 
 
-public class Room {
+class Room {
 
     private double rate;
     private boolean reserved;
@@ -32,7 +32,7 @@ public class Room {
      * @param roomNumber this is a 4 digit integer that represents the room number
      */
 
-    public Room(  int roomNumber) {
+    Room(int roomNumber) {
         this.firstName = "";
         this.lastName = "";
         this.reserved = false;
@@ -52,13 +52,13 @@ public class Room {
      *
      */
 
-    public boolean isReserved() {
+    boolean isReserved() {
         return reserved;
     }
 
 
-    public void setRervation(boolean reserved, String firstName, boolean safe, String lastName, Date checkIn,
-                             Date checkOut, double total, int reservationNum, int days) {
+    void setRervation(boolean reserved, String firstName, boolean safe, String lastName, Date checkIn,
+                      Date checkOut, double total, int reservationNum, int days) {
         this.reserved = reserved;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -70,7 +70,7 @@ public class Room {
         this.days = days;
     }
 
-    public int getRoomNumber() {
+    int getRoomNumber() {
         return roomNumber;
     }
 
@@ -78,15 +78,15 @@ public class Room {
         this.roomNumber = roomNumber;
     }
 
-    public String getRoomType() {
+    String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    void setRoomType(String roomType) {
         this.roomType = roomType;
     }
 
-    public String getFirstName() {
+    String getFirstName() {
         return firstName;
     }
 
@@ -94,7 +94,7 @@ public class Room {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return lastName;
     }
 
@@ -109,13 +109,13 @@ public class Room {
     public void setSafe(boolean safe) {
         this.safe = safe;
     }
-    public String safeString() {
+    private String safeString() {
         if (safe)
             return "Yes";
         return "No";
     }
 
-    public double getTotal() {
+    private double getTotal() {
         return total;
     }
 
@@ -123,7 +123,7 @@ public class Room {
         this.total = total;
     }
 
-    public int getReservationNum() {
+    int getReservationNum() {
         return reservationNum;
     }
 
@@ -131,7 +131,7 @@ public class Room {
         this.reservationNum = reservationNum;
     }
 
-    public Date getCheckIn() {
+    private Date getCheckIn() {
         return checkIn;
     }
 
@@ -139,7 +139,7 @@ public class Room {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    private Date getCheckOut() {
         return checkOut;
     }
 
@@ -147,7 +147,7 @@ public class Room {
         this.checkOut = checkOut;
     }
 
-    public int getDays() {
+    private int getDays() {
         return days;
     }
 
@@ -155,13 +155,19 @@ public class Room {
         this.days = days;
     }
 
-    public double getRate() {
+    double getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    void setRate(double rate) {
         this.rate = rate;
     }
+
+    /**
+     *
+     * @return reservation String representation of the reservation.
+     *
+     */
 
     @Override
     public String toString() {
